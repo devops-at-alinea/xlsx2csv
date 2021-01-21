@@ -838,7 +838,7 @@ class Sheet:
                         t = int(round((float(self.data) % 1) * 24 * 60 * 60, 6))  # it should be in seconds
                         d = datetime.time(int((t // 3600) % 24), int((t // 60) % 60), int(t % 60))
                         self.data = d.strftime(self.timeformat)
-                    elif format_type == 'float' and ('E' in self.data or 'e' in self.data):
+                    elif format_type == 'float' and self.scifloat and ('E' in self.data or 'e' in self.data):
                         self.data = str(self.floatformat or '%f') % float(self.data)
                     # if cell is general, be aggressive about stripping any trailing 0s, decimal points, etc.
                     elif format_type == 'float' and format_str == 'general':
